@@ -1,0 +1,80 @@
+import java.util.HashMap;
+import java.util.HashSet;
+
+//****Leet code 205
+public class Solution {
+	public static void main (String args[]){
+		Solution s1 = new Solution();
+		String s = "egg";
+		String t = "add";
+		System.out.println(s1.isIsomorphic(s , t));
+		
+	}
+    public boolean isIsomorphic(String s, String t) {
+    	if(s.length()!= t.length()){
+    		return false;
+    	}
+        char[] arr1 = new char[256];
+        char[] arr2 = new char[256];
+        for(int  i = 0; i < s.length() ; i++){
+        	char ch1 = s.charAt(i);
+        	char ch2 = t.charAt(i);
+        	if(arr1[(int)ch1] == '\u0000' && arr2[(int)ch2] == '\u0000') {
+        	arr1[(int)ch1] = t.charAt(i);
+        	arr2[(int)ch2] = s.charAt(i);
+        	//return true;
+        	}
+        	else{
+        		if(arr1[(int)ch1] == t.charAt(i) && arr2[(int)ch2] == s.charAt(i)){
+        		}
+        	    else{
+        			return false;
+        		}
+        	}
+        }
+        
+        	return true;
+        	}
+    
+    
+    public boolean isIsomorphic(String s, String t){
+    	HashMap<Character,Character> hm = new HashMap<Character,Character>();
+    	
+    	for(int i = 0; i < s.length(); i++){
+    		char a = s.charAt(i);
+    		char b = t.charAt(i);
+    		HashSet<Character> hs = new HashSet<Character>();
+    		if(hm.containsKey(a)){
+    		        if(hm.get(a).equals(b)){
+    		        	continue;
+    		        }
+    		        else{
+    		        	return false;
+    		        }
+    		}
+    		        else{
+    		        	if(!hm.containsValue(b)){
+    		        		hm.put(a, b);
+    		        	}
+    		        	else{
+    		        		return false;
+    		        	}
+    		        }
+    		
+    		
+    		
+    		 
+    		
+    	
+    	
+    	}
+    	 
+		return true;
+    	
+    }
+        	
+        
+       
+        
+    
+   }
