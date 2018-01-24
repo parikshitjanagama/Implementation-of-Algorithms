@@ -1,0 +1,71 @@
+import java.lang.*;
+public class StackImp {
+	String arr[];
+	int maxSize;
+	int top ;
+	
+	public StackImp(int n){
+		maxSize = n;
+		arr = new String[maxSize];
+		top = 0;
+		
+	}
+	
+	public boolean empty(){
+		if(top == 0){
+			return true;
+		}
+		else{
+		return false;
+		}
+		
+	}
+	
+	public void push(String str){
+		if(top < maxSize){
+		System.out.println(arr[top] = str);
+		top++;
+		}
+		else{
+			System.out.println("Stack overflow");
+		}
+		
+	}
+	
+	public String pop(){
+		if(!this.empty()){
+			String temp = this.Peek();
+			System.out.println( arr[top-1] + " " + "is removed");
+			arr[top-1] = null;
+			top-- ; 
+			return temp;
+		}
+		else{
+			return null;
+		}
+		
+	}
+	
+	public String Peek(){
+		if(top > 0){
+		return arr[top-1];
+		}
+		else {
+			return null;
+		}
+	}
+	
+	public static void main(String args[]){
+		
+		StackImp myStack = new StackImp(4);
+		myStack.push("2");
+		myStack.push("4");
+		myStack.push("6");
+		myStack.push("8");
+		myStack.push("9");
+		System.out.println("Current top element in stack" + " " + myStack.Peek());
+		myStack.pop();
+		myStack.push("10");
+		
+	}
+}
