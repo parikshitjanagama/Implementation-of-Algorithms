@@ -1,0 +1,482 @@
+package CrackinThecode;
+
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.LinkedList;
+
+public class LinkedListImp {
+
+	// private ListNode head; //head node
+
+	// ******** Crack Code Interview *********** //
+
+	// CCI 21 Remove Duplicates
+
+	// M1 without buffer
+
+	public boolean FindingDup(ListNode head) {
+
+		ListNode prev = head;
+		ListNode current = prev.next;
+
+		while (prev.next != null) {
+
+			while (current != null) {
+				if (prev.data != current.data) {
+					current = current.next;
+				} else {
+					return false;
+				}
+			}
+			prev = prev.next;
+			current = prev.next;
+
+		}
+		return true;
+		// MM2 using HashMap CCI21
+
+		// ListNode current = head;
+		// HashMap hm = new HashMap();
+		// while (current != null) {
+		// if (hm.containsKey(current.data)) {
+		// return false;
+		// } else {
+		// hm.put(current.data, 1);
+		// }
+		// current = current.next;
+		// }
+		//
+		// return true;
+
+	}
+
+	// CCI 22 Find Nth Last element
+
+	public ListNode findlastnth(ListNode head, int pos) {
+
+		ListNode current = head;
+		int i = length(head) - pos;
+		int count = 1;
+		while (count < i + 1) {
+			current = current.next;
+			count++;
+		}
+		return current;
+	}
+	
+	//CCI 23 done below
+
+	// CCI 24 
+	
+	public ListNode partition(ListNode head, int p){
+		   ListNode temp1 = head;
+		   ListNode temp2 = temp1.next;
+		   while(temp2 != null){
+		   if(temp2.data >= p){
+			   temp2 = temp2.next;
+			   temp1 = temp1.next;
+		   }
+		   else {
+			   //temp1.next = null;
+			   temp1.next = temp2.next;
+			   temp2.next = head;
+			   head = temp2;
+			   temp2 = temp1.next;
+		   }
+		   }
+		return head;
+		   
+		   
+		   
+	}
+	
+	 // CCI new 25 
+
+	 public LinkedList addLL(ListNode head, ListNode head1) {
+		 int num1 = 0;
+		 int count = 1;
+		 int num2 = 0;
+		 int count1 = 1;
+		 int count2 = 10;
+		 LinkedList ll = new LinkedList();
+		 while(head != null ){
+			 num1 = num1 + count*head.data;
+			 head = head.next;
+			 count = count*10;
+		 }
+		 while(head1 != null ){
+			 num2 = num2 + count1*head1.data;
+			 head1 = head1.next;
+			 count1 = count1*10;
+		 }
+	    int  num3 = num1+num2;
+	    
+	     while(num3 != 0){
+	    	 int p  = num3 % 10;
+	    	 num3 = num3/count2;
+	    	 ll.add(p);
+	    	 //count2 = count2*10;
+	     }
+	     return ll;
+	 }
+	
+
+	// CCI Palindrome new 26
+
+	public boolean LLpalin(ListNode head) {
+		int size = length(head);
+		if (size % 2 == 0) {
+			return false;
+		} else {
+			ListNode reverse = reverse(head);
+
+			while (head != null) {
+				if (head.data != reverse.data) {
+					return false;
+				}
+				head = head.next;
+				reverse = reverse.next;
+
+			}
+
+		}
+
+		return true;
+
+	}
+	
+	// CCI new 27 Intersection of two LL's Method 1 
+	
+	public int Intersection(ListNode head , ListNode head1) {
+		           ListNode a = head;
+		           ListNode b = head1;
+                   int size = length(head);
+                   int size1 = length(head1);
+                   if(size1 > size){
+                   int result = size1 - size;
+                   while(result != 0){
+                	   b = b.next;
+                	   result = result-1;
+                       }
+                   while(a.data != b.data){
+                	   a = a.next;
+                	   b = b.next;
+                   }
+                   }
+                   else {
+                	   int result = size - size1;
+                	   while(result != 0){
+                    	   a = a.next;
+                    	   result = result-1;
+                       }
+                	   while(a.data != b.data){
+                    	   a = a.next;
+                    	   b = b.next;
+                       }
+                   }
+				return a.data;
+                   
+		
+	}
+	
+	// Meth0d 2 HashTable
+	
+	public int intersection(ListNode head, ListNode head1){
+		int len = length(head1);
+		ListNode c  = head1;
+		Hashtable<Integer,Integer> ht  = new Hashtable<Integer,Integer>();
+		if(head.next == null){
+			ht.put(head.data , 1);
+			head = head.next;
+		}
+		for(int z = 0; z<=len; z++ ){
+			if(ht.contains(c.data)){
+				return c.data;
+			}
+			else{
+				c = c.next;
+			}
+			
+		}
+		return 0;
+		
+	}
+	
+	// CCI new 28 Loop Detection
+	
+	
+
+	
+	// ************ LinkedList Implementation Operations *************//
+
+	// Creating Linkedlist
+	public void indert(int value){
+
+	}
+	
+	
+	
+	
+	
+	
+	public ListNode insert(){
+		
+		ListNode head = new ListNode(3);
+		ListNode second = new ListNode(5);
+		ListNode third = new ListNode(8);
+		ListNode fourth = new ListNode(5);
+	    ListNode fifth = new ListNode(10);
+	    ListNode sixth = new ListNode(2);
+	    ListNode seventh = new ListNode(1);
+		head.next = second;
+		second.next = third;
+		third.next = fourth;
+		fourth.next = fifth;
+		fifth.next = sixth;
+		sixth.next = seventh;
+
+		return head;
+
+	}
+
+	public ListNode insert1() {
+
+		
+		ListNode head1 = new ListNode(3);
+		ListNode second = new ListNode(4);
+		ListNode third = new ListNode(5);
+
+		head1.next = second;
+		second.next = third;
+
+		return head1;
+	}
+
+	// Print a linkedlist
+
+	public void display(ListNode head) {
+		if (head == null) {
+			return;
+		}
+		ListNode current = head;
+		while (current != null) {
+			System.out.print(current.data + "-->");
+			current = current.next;
+		}
+		System.out.println(current);
+	}
+
+	// Count the num of elements
+	public int length(ListNode head) {
+		int count = 0;
+		ListNode current = head;
+		while (current != null) {
+			current = current.next;
+			count++;
+		}
+		// System.out.println(count);
+		return count;
+	}
+
+	// Inserting a node in the beginning
+
+	public ListNode InsertatBegin(ListNode head, int data) {
+		ListNode newNode = new ListNode(data);
+		if (head == null) {
+			return newNode;
+		}
+		newNode.next = head;
+		head = newNode;
+
+		return head;
+	}
+
+	// Insert a node in the End
+
+	public ListNode InsertatEnd(ListNode head, int data) {
+
+		ListNode EndNode = new ListNode(data);
+		if (head == null) {
+			return EndNode;
+		}
+		while (head.next != null) {
+
+			head = head.next;
+
+		}
+		head.next = EndNode;
+		EndNode.next = null;
+		return head;
+
+	}
+
+	// Insert a Node in the Middle
+
+	public ListNode InsertMid(ListNode head, int data) {
+		int position = 3;
+		int size = length(head);
+		System.out.println(size);
+		if (position > size + 1 || position < 1) {
+			System.out.println("Invalid Position input");
+			return head;
+		}
+		System.out.println("2");
+		ListNode MidNode = new ListNode(data);
+		if (position == 1) {
+			MidNode.next = head;
+			return MidNode;
+		} else {
+			ListNode prev = head;
+			int count2 = 1;
+			while (count2 < position - 1) {
+
+				prev = prev.next;
+				count2++;
+			}
+			System.out.println("3");
+
+			ListNode last = prev.next;
+			MidNode.next = last;
+			prev.next = MidNode;
+			System.out.println("4");
+			return head;
+		}
+
+	}
+
+	// Delete first Node
+
+	public ListNode Deletebegin(ListNode head) {
+		ListNode temp = head;
+		head = head.next;
+		temp.next = null;
+
+		return head;
+	}
+
+	// Delete A node in the middle ****** CCI23 *********
+
+	public ListNode DeleteInMid(ListNode head, int pos) {
+		int size = length(head);
+		System.out.println(size);
+		if (pos > size || pos < 1) {
+			System.out.println("invalid");
+		}
+		if (pos == 1) {
+			ListNode temp = head;
+			head = head.next;
+			temp.next = null;
+			return head;
+
+		} else {
+			ListNode prev = head;
+			int count = 1;
+			while (count < pos - 1) {
+				prev = prev.next;
+				count++;
+			}
+			ListNode current = prev.next;
+			prev.next = current.next;
+			current.next = null;
+
+			return head;
+
+		}
+	}
+
+	// reverse a lInkedlIst*********
+
+	private ListNode reverse(ListNode head) {
+		ListNode prev = null;
+		if (head == null) {
+			return head;
+		} else {
+			ListNode current = head;
+			ListNode next = null;
+
+			while (current != null) {
+				next = current.next;
+				current.next = prev;
+				prev = current;
+				current = next;
+			}
+		}
+		return prev;
+	}
+
+	// Creating ListNode
+	private static class ListNode {
+		private int data;
+		private ListNode next;
+
+		public ListNode(int data) {
+			this.data = data;
+			this.next = null;
+		}
+	}
+
+	public static void main(String args[]) {
+
+		// ListNode head = new ListNode(34);
+		// ListNode second = new ListNode(33);
+		// ListNode third = new ListNode(3);
+		// ListNode fourth = new ListNode(4);
+		// ListNode fifth = new ListNode(35);
+		// head.next = second;
+		// second.next = third;
+		// third.next = fourth;
+		// fourth.next = fifth;
+
+		LinkedListImp ll = new LinkedListImp();
+		
+		ListNode head = ll.insert();
+		ll.display(head);
+		ll.display(ll.partition(head, 9));
+		
+		
+//		ListNode head = ll.insert();
+//		ListNode head1 = ll.insert1();
+//		ll.display(head);
+//		ll.display(head1);
+//		System.out.println(ll.addLL(head, head1));
+		
+		
+		
+//		ListNode head = ll.insert();
+//        System.out.println(ll.LLpalin(head));
+        
+		// ll.display(head);
+		//
+		// ll.display(head1);
+
+		// ll.display(head);
+
+		// ListNode newLL1;
+		// newLL1 = ll.InsertatBegin(head, 30);
+		// ll.display(newLL1);
+		//
+		// ListNode newLL2;
+		// newLL2 = ll.InsertatEnd(newLL1, 40);
+		// ll.display(head);
+		//
+		// ListNode newLL3;
+		// newLL3 = ll.InsertMid(head, 100);
+		// ll.display(newLL3);
+		//
+		// ListNode newLL4;
+		// newLL4 = ll.Deletebegin(head);
+		// ll.display(newLL4);
+
+		// ListNode newLL5;
+		// newLL5 = ll.DeleteInMid(head, 3);
+		// ll.display(newLL5);
+
+		// boolean s = ll.FindingDup(head);
+		// System.out.println(s);
+
+		// ListNode n = ll.findlastnth(head, 2);
+		// System.out.println(n.data);
+
+	}
+
+}
