@@ -1,0 +1,66 @@
+
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+// Sp5
+public class QuickSort {
+
+	private static int[] theArray = { 11, 3, 5, 9, 8, 12, 18, 30, 1 , 7};
+	private static int arraySize = theArray.length;
+
+	public static void main(String[] args) {
+	
+		           for(int i = 0; i< arraySize; i++){
+		        	   System.out.print(theArray[i] + " ");
+		        	   
+		           }
+		           System.out.println();
+                   partitionArray(theArray[arraySize-1]);
+                   
+                   for(int i = 0 ; i< arraySize; i++){
+                	   System.out.print(theArray[i] + " ");
+                   }
+	}
+
+	public static void partitionArray(int pivot) {
+
+		int leftpointer = -1;
+		int rightpointer = arraySize-1;
+
+		while (true) {
+
+			while (leftpointer < (arraySize - 1) && theArray[++leftpointer] < pivot)
+				;
+
+//			System.out.println("left pointer is smaller than pivot");
+
+			while (rightpointer > 0 && theArray[--rightpointer] > pivot)
+				;
+
+//			System.out.println("right pointer is greater than pivot");
+
+			if (leftpointer >= rightpointer) {
+				swapvalues(leftpointer, arraySize-1);
+//				partitionArray(theArray[arraySize-1]);
+				System.out.println(rightpointer);
+				
+				break;
+			} else {
+				swapvalues(leftpointer, rightpointer);
+
+//				System.out.println("Swapping Done");
+			}
+		}
+
+	}
+
+	private static void swapvalues(int leftpointer, int rightpointer) {
+
+		int temp = theArray[leftpointer];
+		theArray[leftpointer] = theArray[rightpointer];
+		theArray[rightpointer] = temp;
+
+	}
+
+}
