@@ -1,0 +1,77 @@
+package imp;
+// Sp1
+public class MergeSortWA {
+	public static void sortWA(int[] arr, int[] temp) {
+		mergeSortWA(arr, temp, 0, arr.length - 1);
+	}
+
+	public static void mergeSortWA(int[] arr, int[] temp, int i, int j) {
+		int midIndex = i + j / 2;
+		if (j - i < 1) {
+			return;
+		} else {
+			System.out.println("1");
+			mergeSortWA(arr, temp, i, midIndex);
+			System.out.println("2");
+			mergeSortWA(arr, temp, midIndex + 1, j);
+			System.out.println("3");	
+			merge(arr, temp, i, midIndex, j);
+
+		}
+
+	}
+
+	public static void merge(int[] arr, int[] temp, int p, int mid, int q) {
+		int i = p;
+		int j = mid + 1;
+		int k = 0;
+		System.out.println("4");
+		if(q - p == 1){
+			if(arr[p] > arr[q]){
+				int t = arr[p];
+				arr[p] = arr[q];
+				arr[q] = t;
+			}
+		}
+		if (q - p > 0) {
+			while (i <= mid && j <= q) {
+				if (arr[j] >= arr[i]) {
+					temp[k] = arr[i];
+					i++;
+				} else {
+					temp[k] = arr[j];
+					j++;
+				}
+				k++;
+			}
+			if (i <= mid && j > q) {
+				while (i <= mid) {
+					temp[k] = arr[i];
+					k++;
+					i++;
+				}
+			} else {
+				while (j <= q) {
+					temp[k] = arr[j];
+					k++;
+					j++;
+				}
+			}
+			for (i = p; i <= q; i++) {
+				arr[i] = temp[i];
+			}
+		}
+
+	}
+
+	public static void main(String[] args) {
+		int[] arr = { 1, 5, 3, };
+		int[] temp = new int[arr.length];
+		MergeSortWA mg = new MergeSortWA();
+		mg.sortWA(arr, temp);
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+
+	}
+}
